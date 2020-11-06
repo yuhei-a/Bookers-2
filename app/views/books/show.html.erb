@@ -1,14 +1,15 @@
 <div class='body'>
+            <%= flash[:notice] %>
   <div class='container'>
     <p id="notice"></p>
     <div class='row'>
       <div class='col-xs-3'>
         <h2>User info</h2>
         <table class='table'>
-          <tr><%= attachment_image_tag @book.user, :profile_image, :fill, 60, 60, class: "img-circle pull-left profile-thumb", fallback: "no_image.jpg"%></tr>
+          <tr><%= attachment_image_tag @user, :profile_image, :fill, 60, 60, class: "img-circle pull-left profile-thumb", fallback: "no_image.jpg"%></tr>
           <tr>
     	      <th>name</th>
-    	      <th><%= books.name %></th>
+    	      <th><%= @books.name %></th>
           </tr>
           <tr>
             <th>introduction</th>
@@ -22,13 +23,13 @@
         <h2>New book</h2>
         <%= form_with model:@book, local:true do |f| %>
             <div class="field row">
-              <label for="book_title">Title</label>
-              <%= f.text_field :title %>
+              <label for="book_title">Title</label><br />
+              <td><%= f.text_field :title, :size => "40*40"  %></td>
             </div>
 
             <div class="field row">
-              <label for="book_opinion">Opinion</label>
-              <%= f.text_area :body %>
+              <label for="book_opinion">Opinion</label><br />
+              <td><%= f.text_area :body, :size => "39*39" %></td>
             </div>
 
             <div class="actions row">
@@ -43,8 +44,8 @@
 		      <tr>
 
             <td>
-              <%= attachment_image_tag books.user, :profile_image, class: "img-circle pull-left profile-thumb", fallback: "no_image.jpg", size: "40x40" %><br>
-              <% @books.name %>
+              <%= attachment_image_tag @user, :profile_image, class: "img-circle pull-left profile-thumb", fallback: "no_image.jpg", size: "40x40" %><br>
+              <% @user.name %>
             </td>
             <td><%= @books.title %></td>
             <td><%= @books.body %></td>
