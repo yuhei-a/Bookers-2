@@ -1,5 +1,5 @@
 <div class='body'>
-            <%= flash[:notice] %>
+                         <%= flash[:notice] %>
   <div class='container'>
     <p id="notice"></p>
     <div class='row'>
@@ -9,31 +9,31 @@
           <tr><%= attachment_image_tag @user, :profile_image, :fill, 60, 60, class: "img-circle pull-left profile-thumb", fallback: "no_image.jpg"%></tr>
           <tr>
     	      <th>name</th>
-    	      <th><%= @books.name %></th>
+    	      <th><%= @user.name %></th>
           </tr>
           <tr>
             <th>introduction</th>
-            <th><%= @books.introduction %></th>
+            <th><%= @user.introduction %></th>
           </tr>
         </table>
 
         <div class='row'>
-          <%= link_to 'edit', edit_user_path(current_user.id) %>
+          <%= link_to 'edit', edit_user_path(current_user.id), class:"btn btn-default btn-block"%>
         </div>
         <h2>New book</h2>
         <%= form_with model:@book, local:true do |f| %>
             <div class="field row">
               <label for="book_title">Title</label><br />
-              <td><%= f.text_field :title, :size => "40*40"  %></td>
+              <td><%= f.text_field :title, :size => "39*39" %></td>
             </div>
 
             <div class="field row">
               <label for="book_opinion">Opinion</label><br />
-              <td><%= f.text_area :body, :size => "39*39" %></td>
+              <td><%= f.text_area :body, :size => "38*38" %></td>
             </div>
 
             <div class="actions row">
-              <%= f.submit 'Create Book' %>
+              <%= f.submit 'Create Book',class:"btn btn-primary btn-block"%>
             </div>
         <% end %>
       </div>
@@ -42,16 +42,16 @@
 		    <h2>Book detail</h2>
 		    <table class='table'>
 		      <tr>
-
-            <td>
-              <%= attachment_image_tag @user, :profile_image, class: "img-circle pull-left profile-thumb", fallback: "no_image.jpg", size: "40x40" %><br>
-              <% @user.name %>
-            </td>
+            <td><%= link_to user_path(@user) do %>
+                <%= attachment_image_tag @user, :profile_image, class: "img-circle pull-left profile-thumb", fallback: "no_image.jpg", size: "40x40" %><br />
+                <% end %>
+                <%= link_to @user.name,user_path(@user) %>
+                </td>
             <td><%= @books.title %></td>
             <td><%= @books.body %></td>
 
-            <td><%= link_to 'Edits', edit_book_path(books) %></td>
-            <td>Destroy</td>
+            <td><%= link_to 'Edits', edit_book_path(@books),class:"btn btn-success" %></td>
+            <td><%= link_to "Destroy", "/books/#{@books.id}",class:"btn btn-danger", method: :delete, data: {confirm: "本当に削除しますか？"} %></td>
           </tr>
         </table>
       </div>

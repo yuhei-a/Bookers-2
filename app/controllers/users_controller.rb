@@ -1,11 +1,9 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!
+  before_action :check_user, only: %i[edit update]
 
-  def top
-  end
+  def top; end
 
-  def about
-  end
+  def about; end
 
   def show
     @user = User.find(params[:id])
@@ -14,7 +12,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(current_user.id)
+    @user = User.find(params[:id])
   end
 
   def index
@@ -35,6 +33,11 @@ class UsersController < ApplicationController
   private
   def user_params
   params.require(:user).permit(:name, :introduction, :profile_image)
+  end
+
+  def check_user
+   user = User.find(params[:id])
+   redirect_to user_path(current_user) unless user == current_user
   end
 
 end
