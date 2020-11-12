@@ -8,7 +8,7 @@
 
     <% if @book.errors.any? %>
      <%= @book.errors.count %>
-     <% @book.errors.full_messages.each do |book| %>
+     <% @book.errors.full_messages.each do |book| %><p>"error"</p>
        <%= book %>
      <% end %>
     <% end %>
@@ -37,14 +37,11 @@
       </div>
     </div>
     <footer>
-  <div class='container'>
-  	<div class='row'>
-    	<div class='col-xs-3 col-xs-offset-9'>
-    		<p>CopyRight Infratop.inc</p>
-    	</div>
-    </div>
-  </div>
-</footer>
-
-  </body>
-</html>
+  　　<div class='container'>
+  	　　<div class='row'>
+    	　　<div class='col-xs-3 col-xs-offset-9'>
+    		　　<p>CopyRight Infratop.inc</p>
+    	　　</div>
+    　　</div>
+  　　</div>
+　　</footer>

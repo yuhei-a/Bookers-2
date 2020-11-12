@@ -1,5 +1,9 @@
 <div class='body'>
-                              <%= flash[:notice] %>
+ <div class='container'>
+ <div class='row'>
+  <div class='col-xs-3'>
+    <div class="side-bar_content">
+                      <%= flash[:notice] %>
 
                      <% if @book.errors.any? %>
                         <%= @book.errors.count %><p>error</p>
@@ -7,26 +11,23 @@
                         <%= book %>
                         <% end %>
                      <% end %>
-      <div class='container'>
-<div class='row'>
-  <div class='col-xs-3'>
-    <h2>User info</h2>
-
-    <table class='table'>
-      <tr><%= attachment_image_tag @user, :profile_image, :fill, 60, 60, class: "img-circle pull-left profile-thumb", fallback: "no_image.jpg"%></tr>
-      <tr>
-    	<th>name</th>
-    	<th><%= @user.name %></th>
-      </tr>
-       <tr>
-    	   <th>introduction</th>
-    	   <th><%= @user.introduction %></th>
-       </tr>
-    </table>
+       <h2>User info</h2>
+          <table class='table'>
+            <tr><%= attachment_image_tag @user, :profile_image, :fill, 60, 60, class: "img-circle pull-left profile-thumb", fallback: "no_image.jpg"%>
+    	         <th>name</th>
+    	         <th><%= @user.name %></th>
+            </tr>
+            <tr>
+    	       <th>introduction</th>
+    	       <th><%= @user.introduction %></th>
+            </tr>
+          </table>
 
     <div class='row'>
       <div class=class="col-xs-12 btn btn-default glyphicon glyphicon-wrench">
-       <%= link_to 'edit',edit_user_path(current_user.id), class:"btn btn-default btn-block" %>
+       <%= link_to edit_user_path(current_user.id) do %>
+         <i class="col-xs-12 btn btn-default glyphicon glyphicon-wrench"></i>
+         <% end %>
       </div>
     </div>
 
@@ -44,11 +45,12 @@
             </div>
 
             <div class="actions row">
-              <%= f.submit 'Create Book',class:"btn btn-primary btn-block" %>
+              <%= f.submit "Create Book",class:"btn btn-primary btn-block" %>
             </div>
           <% end %>
         </div>
     </div>
+  </div>
 
   <div class='col-xs-9'>
     <h2>Books</h2>

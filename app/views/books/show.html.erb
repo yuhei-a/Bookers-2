@@ -1,60 +1,76 @@
 <div class='body'>
-                         <%= flash[:notice] %>
   <div class='container'>
-    <p id="notice"></p>
     <div class='row'>
       <div class='col-xs-3'>
-        <h2>User info</h2>
-        <table class='table'>
-          <tr><%= attachment_image_tag @user, :profile_image, :fill, 60, 60, class: "img-circle pull-left profile-thumb", fallback: "no_image.jpg"%></tr>
-          <tr>
-    	      <th>name</th>
-    	      <th><%= @user.name %></th>
-          </tr>
-          <tr>
-            <th>introduction</th>
-            <th><%= @user.introduction %></th>
-          </tr>
-        </table>
+          <%= flash[:notice] %>
+            <h2>User info</h2>
+            <table class='table'>
+              <tr><%= attachment_image_tag @user, :profile_image, :fill, 60, 60, class: "img-circle pull-left profile-thumb", fallback: "no_image.jpg"%></tr>
+    	          <th>name</th>
+    	          <th><%= @user.name %></th>
+              </tr>
+              <tr>
+                <th>introduction</th>
+                <th><%= @user.introduction %></th>
+              </tr>
+            </table>
 
-        <div class='row'>
-          <%= link_to 'edit', edit_user_path(current_user.id), class:"btn btn-default btn-block"%>
-        </div>
-        <h2>New book</h2>
-        <%= form_with model:@book, local:true do |f| %>
-            <div class="field row">
-              <label for="book_title">Title</label><br />
-              <td><%= f.text_field :title, :size => "39*39" %></td>
-            </div>
+          <div class='row'>
+             <div class=class="col-xs-12 btn btn-default glyphicon glyphicon-wrench">
+               <%= link_to edit_user_path(current_user.id) do %>
+               <i class="col-xs-12 btn btn-default glyphicon glyphicon-wrench"></i>
+               <% end %>
+             </div>
+          </div>
+             <h2>New book</h2>
+               <%= form_with model:@book, local:true do |f| %>
+                 <div class="field row">
+                   <label for="book_title">Title</label><br />
+                   <td><%= f.text_field :title, :size => "39*39" %></td>
+                 </div>
 
-            <div class="field row">
-              <label for="book_opinion">Opinion</label><br />
-              <td><%= f.text_area :body, :size => "38*38" %></td>
-            </div>
+                  <div class="field row">
+                   <label for="book_opinion">Opinion</label><br />
+                   <td><%= f.text_area :body, :size => "38*38" %></td>
+                  </div>
 
-            <div class="actions row">
-              <%= f.submit 'Create Book',class:"btn btn-primary btn-block"%>
-            </div>
-        <% end %>
+                  <div class="actions row">
+                    <%= f.submit "Create Book",class:"btn btn-primary btn-block"%>
+                  </div>
+                   <% end %>
       </div>
 
       <div class='col-xs-9'>
-		    <h2>Book detail</h2>
-		    <table class='table'>
-		      <tr>
-            <td><%= link_to user_path(@user) do %>
-                <%= attachment_image_tag @user, :profile_image, class: "img-circle pull-left profile-thumb", fallback: "no_image.jpg", size: "40x40" %><br />
+		     <h2>Book detail</h2>
+		       <table class='table'>
+		         <tr>
+               <td><%= link_to user_path(@user) do %>
+                  <%= attachment_image_tag @user, :profile_image, class: "img-circle pull-left profile-thumb", fallback: "no_image.jpg", size: "40x40" %><br />
+                  <% end %>
+                  <%= link_to @user.name,user_path(@user) %>
+               </td>
+               <td><%= @books.title %></td>
+               <td><%= @books.body %></td>
+　　　　　　　　 <% if current_user == @user %>
+               <td><%= link_to 'Edit', edit_book_path(@books),class: "btn-sm btn btn-success" %></td>
+            　　<% end %>
+            　　<% if current_user == @user %>
+               <td><%= link_to 'Destroy', "/books/#{@books.id}",class: "btn-sm btn btn-danger", method: :delete, data: {confirm: "本当に削除しますか？"} %></td>
                 <% end %>
-                <%= link_to @user.name,user_path(@user) %>
-                </td>
-            <td><%= @books.title %></td>
-            <td><%= @books.body %></td>
-
-            <td><%= link_to 'Edits', edit_book_path(@books),class:"btn btn-success" %></td>
-            <td><%= link_to "Destroy", "/books/#{@books.id}",class:"btn btn-danger", method: :delete, data: {confirm: "本当に削除しますか？"} %></td>
-          </tr>
-        </table>
+             </tr>
+           </table>
       </div>
     </div>
   </div>
 </div>
+    <footer>
+      <div class='container'>
+  	     <div class='row'>
+    	     <div class='col-xs-3 col-xs-offset-9'>
+    		     <p>CopyRight Infratop.inc</p>
+    	     </div>
+         </div>
+      </div>
+    </footer>
+
+

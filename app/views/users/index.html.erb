@@ -1,75 +1,78 @@
-
 <div class='body'>
   <div class='container'>
-<div class='row'>
-  <div class='col-xs-3'>
-    <h2>User info</h2>
-    <table class='table'>
-      <tr><%= attachment_image_tag @user, :profile_image, :fill, 60, 60, class: "img-circle pull-left profile-thumb", fallback: "no_image.jpg" %></tr>
-      <tr>
-    	  <th>name</th>
-    	  <th><%= @user.name %></th>
-      </tr>
-      <tr>
-    	  <th>introduction</th>
-    	  <th><%= @user.introduction %></th>
-      </tr>
-</table>
+    <div class='row'>
+      <div class='col-xs-3'>
+        <div class="side-bar_content">
+          <h2>User info</h2>
+          <table class='table'>
+            <tr><%= attachment_image_tag @user, :profile_image, :fill, 60, 60, class: "img-circle pull-left profile-thumb", fallback: "no_image.jpg" %>
+             <th>name</th>
+    	       <th><%= @user.name %></th>
+            </tr>
+            <tr>
+    	        <th>introduction</th>
+    	        <th><%= @user.introduction %></th>
+            </tr>
+          </table>
 
-<div class='row'>
-  <%= link_to 'edit', edit_user_path(current_user.id), class:"btn btn-default btn-block" %>
-</div>
+           <div class='row'>
+             <div class=class="col-xs-12 btn btn-default glyphicon glyphicon-wrench">
+                <%= link_to edit_user_path(current_user.id) do %>
+                 <i class="col-xs-12 btn btn-default glyphicon glyphicon-wrench"></i>
+                <% end %>
+              </div>
+            </div>
 
-    <h2>New book</h2>
-    <%= form_with model:@book, local:true do |f| %>
-  <div class="field row">
-    <label for="book_title">Title</label><br />
-   <%= f.text_field :title, :size => "39*39" %>
-  </div>
+            <h2>New book</h2>
+               <%= form_with model:@book, local:true do |f| %>
+            <div class="field row">
+                <label for="book_title">Title</label><br />
+                <%= f.text_field :title, :size => "39*39" %>
+               </div>
 
-  <div class="field row">
-    <label for="book_opinion">Opinion</label><br />
-    <%= f.text_area :body, :size => "38*38"  %>
-  </div>
+              <div class="field row">
+                <label for="book_opinion">Opinion</label><br />
+                <%= f.text_area :body, :size => "38*38"  %>
+              </div>
 
-  <div class="actions row">
-    <%= f.submit 'Create Book',class:"btn btn-primary btn-block" %>
-  </div>
-    <% end %>
-  </div>
+               <div class="actions row">
+                 <%= f.submit "Create Book",class:"btn btn-primary btn-block" %>
+                </div>
+                <% end %>
+            </div>
+        </div>
+            <div class='col-xs-9'>
+             <h2>Users</h2>
 
-  <div class='col-xs-9'>
-    <h2>Users</h2>
-
-    <table class='table table-hover table-inverse'>
-  <thead>
-    <tr>
-      <th>image</th>
-      <th>name</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-     <% @users.each do |user| %>
-  <tbody>
-      <tr>
-        <td><%= attachment_image_tag user, :profile_image, class: "img-circle pull-left profile-thumb", fallback: "no_image.jpg",size: "40x40" %></td>
-        <td><%= user.name %></td>
-        <td><%= link_to 'Show', user_path(user.id) %></td>
-      </tr>
-      <% end %>
-  </tbody>
-</table>
-  </div>
-</div>
-
+              <table class='table table-hover table-inverse'>
+                <thead>
+                 <tr>
+                   <th>image</th>
+                   <th>name</th>
+                   <th colspan="3"></th>
+                 </tr>
+                </thead>
+                   <% @users.each do |user| %>
+                    <tbody>
+                      <tr>
+                        <td><%= attachment_image_tag user, :profile_image, class: "img-circle pull-left profile-thumb", fallback: "no_image.jpg",size: "40x40" %></td>
+                        <td><%= user.name %></td>
+                        <td><%= link_to 'Show', user_path(user.id) %></td>
+                      </tr>
+                     <% end %>
+                    </tbody>
+              </table>
+            </div>
+        </div>
       </div>
     </div>
-    <footer>
-  <div class='container'>
-  	<div class='row'>
-    	<div class='col-xs-3 col-xs-offset-9'>
-    		<p>CopyRight Infratop.inc</p>
-    	</div>
-    </div>
   </div>
-</footer>
+    <footer>
+       <div class='container'>
+  	     <div class='row'>
+    	     <div class='col-xs-3 col-xs-offset-9'>
+    		     <p>CopyRight Infratop.inc</p>
+    	     </div>
+         </div>
+       </div>
+    </footer>
